@@ -4,18 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Calendar Embed</title>
+  <title>Interactive Calendar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css">
   <style>
     /* Global styles */
     body {
       font-family: Arial, sans-serif;
+      font-size: 16px;
       margin: 0;
       padding: 0;
       background: linear-gradient(to bottom, #a487d5, #4d6bd9);
     }
 
-    /* Header styles */
     .header-container {
       position: fixed;
       top: 0;
@@ -30,11 +31,45 @@
       z-index: 1;
     }
 
+    .account-profile {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+
     .account-profile img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       margin-right: 10px;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .account-profile:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f0f0f0;
     }
 
     .button-container {
@@ -48,28 +83,28 @@
       color: #fff;
       border: none;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
       border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background: linear-gradient(#525b6e, #8f9baa);
     }
 
     .calendar-container {
-      max-width: 800px;
+      max-width: 100%;
+      padding: 0 20px;
       margin: 150px auto 0;
     }
 
-    /* Custom calendar styles */
-    .calendar-iframe {
-      border: solid 1px #777;
-      width: 100%;
-      height: 600px;
-    }
-
-    /* Additional content styles */
     .content {
       margin-top: 50px;
-      padding: 20px;
+      padding: 40px;
       min-height: 300px;
       color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
     }
 
     .content h2 {
@@ -81,35 +116,72 @@
 <body>
   <div class="header-container">
     <div class="account-profile">
-      <img src="./user.png" alt="Profile Image"> <!-- Replace with your profile image -->
-      <span>Test Account</span> <!-- Replace with your account name -->
+      <img src="./user.png" alt="Profile Image">
+      <span>Test Account</span>
+      <div class="dropdown-menu">
+        <a href="#">View Profile</a>
+        <a href="#">Logout</a>
+      </div>
     </div>
-
-<div class="button-container">
+    <div class="button-container">
       <button class="button" onclick="window.location.href = 'main.html';"><i class="fas fa-home"></i> Home</button>
-      <!-- Updated text in button 1 -->
       <button class="button" onclick="window.location.href = 'chat.html';"><i class="fas fa-comment"></i> Chats</button>
       <button class="button" onclick="window.location.href = 'grades.html';"><i class="fas fa-chart-line"></i> Grades</button>
-      <button class="button" onclick="window.location.href = 'Contact.html';"><i class="fas fa-user"></i> Contacts</button> <!-- Updated text in button 2 -->
-      <button class="button" onclick="window.location.href = 'calendar.html';"><i class="fas fa-calendar"></i> Calendar</button> <!-- Updated text in button 3 -->
-      <button class="button" onclick="window.location.href = 'settings.html';"><i class="fas fa-cog"></i> Settings</button> <!-- Updated text in button 4 -->
+      <button class="button" onclick="window.location.href = 'Contact.html';"><i class="fas fa-user"></i> Contacts</button>
+      <button class="button" onclick="window.location.href = 'calendar.html';"><i class="fas fa-calendar"></i> Calendar</button>
+      <button class="button" onclick="window.location.href = 'settings.html';"><i class="fas fa-cog"></i> Settings</button>
     </div>
   </div>
 
-  <!-- Google Calendar Container -->
   <div class="calendar-container">
-    <!-- Replace the iframe code below with your Google Calendar's iframe code -->
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23B39DDB&ctz=America%2FChicago&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%230B8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <div id="calendar"></div>
   </div>
 
-  <!-- Additional content goes here -->
   <div class="content">
- 
+    <h2>Welcome to Your School Management Platform</h2>
+    <p>Additional content goes here.</p>
   </div>
-  <script>
-    
-  </script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        editable: true,
+        events: [
+          {
+            title: 'Event 1',
+            start: '2023-07-20'
+          },
+          {
+            title: 'Event 2',
+            start: '2023-07-22'
+          }
+        ],
+        dateClick: function(info) {
+          var eventTitle = prompt('Enter Event Title:');
+          if (eventTitle) {
+            calendar.addEvent({
+              title: eventTitle,
+              start: info.dateStr,
+              allDay: true
+            });
+          }
+        },
+        eventClick: function(info) {
+          var updateTitle = prompt('Update Event Title:', info.event.title);
+          if (updateTitle) {
+            info.event.setProp('title', updateTitle);
+          }
+        }
+      });
+
+      calendar.render();
+    });
+  </script>
 </body>
 
 </html>
