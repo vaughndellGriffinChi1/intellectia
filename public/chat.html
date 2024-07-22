@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Your CSS styles here */
+
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #a487d5, #4d6bd9);
+    }
+
+    /* Header styles */
+    .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      /* White background for the header */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      /* Add a box shadow to the header */
+      padding: 10px 20px;
+      /* Adjusted padding for the buttons and account profile */
+      z-index: 2;
+      /* Set a higher z-index to keep the header above the content */
+      display: flex;
+      justify-content: space-between;
+      /* Add space between the account profile and buttons */
+      align-items: center;
+      /* Vertically center the elements */
+    }
+
+    .account-profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .account-profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .button {
+      margin: 5px;
+      padding: 10px 15px;
+      background: linear-gradient(#8f9baa, #525b6e);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    /* Chat container styles */
+    .chat-container {
+      display: flex;
+      margin-top: 70px;
+    }
+
+    /* Chat partner's profile styles */
+    .chat-partner-profile {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-left: 20px;
+    }
+
+    .chat-partner-profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .chat-partner-name {
+      font-weight: bold;
+    }
+
+    /* Chat window styles */
+    .chat-window {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 400px;
+    }
+
+    .message-container {
+      overflow-y: auto;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #e3e3e3;
+    }
+
+    .sent {
+      margin-left: auto;
+      background-color: #8f9baa;
+      color: #fff;
+    }
+
+    /* Input container styles */
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .input-container input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .input-container button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      background-color: #8f9baa;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="header-container">
+    <div class="account-profile">
+      <img src="./user.png" alt="Profile Image"> <!-- Replace with your profile image -->
+      <span>Test Account</span> <!-- Replace with your account name -->
+    </div>
+
+<div class="button-container">
+      <button class="button" onclick="window.location.href = 'main.html';"><i class="fas fa-home"></i> Home</button>
+      <!-- Updated text in button 1 -->
+      <button class="button" onclick="window.location.href = 'chat.html';"><i class="fas fa-comment"></i> Chats</button>
+      <button class="button" onclick="window.location.href = 'grades.html';"><i class="fas fa-chart-line"></i> Grades</button>
+      <button class="button" onclick="window.location.href = 'Contact.html';"><i class="fas fa-user"></i> Contacts</button> <!-- Updated text in button 2 -->
+      <button class="button" onclick="window.location.href = 'calendar.html';"><i class="fas fa-calendar"></i> Calendar</button> <!-- Updated text in button 3 -->
+      <button class="button" onclick="window.location.href = 'settings.html';"><i class="fas fa-cog"></i> Settings</button> <!-- Updated text in button 4 -->
+    </div>
+  </div>
+
+  <div class="chat-container">
+    <!-- Chat partner's profile at the top of the chat window -->
+    <div class="chat-partner-profile">
+      <img src="./user.png" alt="Chat Partner"> <!-- Replace with the chat partner's profile image -->
+      <span class="chat-partner-name">Jane Smith</span> <!-- Replace with the chat partner's name -->
+    </div>
+
+    <!-- Chat window -->
+    <div class="chat-window">
+      <div class="message-container">
+        <!-- Dummy chat messages, you can replace this with dynamic data from the server -->
+        <div class="message">Hello!<br><span>10:00 AM</span></div>
+        <div class="message">Hi there!<br><span>10:02 AM</span></div>
+        <div class="message sent">How are you?<br><span>10:05 AM</span></div>
+        <div class="message">I'm good, thanks!<br><span>10:07 AM</span></div>
+        <!-- Add previous discussions for all users here -->
+      </div>
+      <div class="input-container">
+        <input type="text" id="message-input" placeholder="Type your message..." onkeydown="handleKeyDown(event)">
+        <button id="send-button" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to add new messages to the chat window
+    function addMessage(message, sent = false) {
+      const messageContainer = document.querySelector('.message-container');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+
+      if (sent) {
+        messageDiv.classList.add('sent');
+      }
+
+      const messageText = document.createElement('span');
+      messageText.innerText = message;
+
+      const timeSpan = document.createElement('span');
+      const date = new Date();
+      timeSpan.innerText = `${date.getHours()}:${date.getMinutes()}`;
+
+      messageDiv.appendChild(messageText);
+      messageDiv.appendChild(document.createElement('br'));
+      messageDiv.appendChild(timeSpan);
+
+      messageContainer.appendChild(messageDiv);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    }
+
+    // Function to send a new message
+    function sendMessage() {
+      const messageInput = document.getElementById('message-input').value;
+      if (messageInput.trim() !== '') {
+        addMessage(messageInput, true);
+        document.getElementById('message-input').value = '';
+      }
+    }
+
+    // Function to handle Enter key press for sending messages
+    function handleKeyDown(event) {
+      if (event.keyCode === 13) {
+        sendMessage();
+      }
+    }
+
+    // Bind the send button click event
+    const sendButton = document.getElementById('send-button');
+    sendButton.addEventListener('click', sendMessage);
+
+    // Simulate received message after 2 seconds
+    setTimeout(() => {
+      addMessage("Hi! How can I help you?");
+    }, 2000);
+
+
+    
+  </script>
+</body>
+
+</html>
