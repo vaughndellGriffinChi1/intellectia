@@ -9,39 +9,67 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f2f2f2;
+            background: linear-gradient(135deg, #A58AE8, #2C2999);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background-color: #4CAF50;
-            color: #fff;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header .nav-links a {
+            background: none;
+            margin: 0 10px;
+        }
+
+        .header .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .header .cta-button {
+            background: #3e8e41;
+        }
+
+        .header .cta-button:hover {
+            background-color: #45a049;
         }
 
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
             text-align: center;
-            padding: 50px;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 48px;
             margin-bottom: 20px;
-            color: #333;
+            line-height: 1.2;
         }
 
         p {
-            font-size: 18px;
-            color: #555;
+            font-size: 20px;
             margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         .cta-button {
@@ -55,6 +83,7 @@
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s ease;
+            margin: 10px;
         }
 
         .cta-button:hover {
@@ -63,11 +92,14 @@
 
         .mission-statement,
         .key-features {
-            margin-top: 40px;
+            margin-top: 60px;
+            text-align: left;
         }
 
         h2 {
-            color: #4CAF50;
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 20px;
         }
 
         ul {
@@ -76,23 +108,46 @@
         }
 
         li {
-            margin-bottom: 10px;
-            font-size: 16px;
-            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+            padding-left: 1.2em;
+            text-indent: -1.2em;
+        }
+
+        li:before {
+            content: "• ";
+            color: #4CAF50;
+            font-size: 24px;
         }
 
         footer {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 20px;
             text-align: center;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Header section with sign in/sign up button -->
+    <!-- Header section with sign in/sign up button and navigation links -->
     <header class="header">
-        <!-- Your logo and other navigation links go here -->
+        <!-- Logo placeholder (replace with your logo) -->
+        <a href="#" style="font-size: 24px;">Intellectia.me</a>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </nav>
         <a href="login.html" class="cta-button">Sign In / Sign Up</a>
     </header>
 
@@ -102,17 +157,18 @@
         <section class="introduction">
             <h1>Welcome to Intellectia.me</h1>
             <p>Intellectia.me is a platform where students, educators, and parents can all collaborate through one website.</p>
+            <a href="learn-more.html" class="cta-button">Learn More</a>
         </section>
 
         <!-- Mission statement section -->
-        <section class="mission-statement">
+        <section id="about" class="mission-statement">
             <h2>Our Mission</h2>
             <p>The core mission of Intellectia.me is to bring students, educators, and parents together on a single platform, creating a cohesive and supportive educational community.</p>
             <p>The platform aims to enhance the learning experience by fostering open communication, collaboration, and easy access to educational resources.</p>
         </section>
 
         <!-- Key Features section -->
-        <section class="key-features">
+        <section id="features" class="key-features">
             <h2>Key Features</h2>
             <ul>
                 <li>User Profiles: Create personalized profiles with profile pictures and contact details.</li>
@@ -125,8 +181,7 @@
 
     <!-- Footer section -->
     <footer>
-        <!-- Your footer content goes here -->
-        &copy; 2023 Intellectia.me. All rights reserved.
+        &copy; 2023 Intellectia.me. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
     </footer>
 </body>
 </html>
