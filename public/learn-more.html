@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn More - Intellectia.me</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #A58AE8, #2C2999);
+            background: linear-gradient(135deg, #7f60c7, #2C2999);
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -25,6 +27,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            font-family: 'Platypi', sans-serif;
         }
 
         .header a {
@@ -46,11 +49,11 @@
         }
 
         .header .cta-button {
-            background: #3e8e41;
+            background: #3752c9;
         }
 
         .header .cta-button:hover {
-            background-color: #45a049;
+            background-color: #234a85;
         }
 
         .container {
@@ -72,30 +75,57 @@
             line-height: 1.6;
         }
 
-        .section {
-            margin-top: 60px;
-            text-align: left;
+        .cta-button {
+            display: inline-block;
+            background-color: #3752c9;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin: 10px;
         }
 
-        h2 {
+        .cta-button:hover {
+            background-color: #234a85;
+        }
+
+        .learn-more-content {
+            text-align: left;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .learn-more-content h2 {
             color: #fff;
             font-size: 32px;
             margin-bottom: 20px;
         }
 
-        ul {
+        .learn-more-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-content ul {
             list-style-type: none;
             padding: 0;
         }
 
-        li {
+        .learn-more-content li {
             margin-bottom: 15px;
             font-size: 18px;
             padding-left: 1.2em;
             text-indent: -1.2em;
         }
 
-        li:before {
+        .learn-more-content li:before {
             content: "• ";
             color: #4CAF50;
             font-size: 24px;
@@ -104,7 +134,7 @@
         footer {
             background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
-            padding: 20px;
+            padding: 10px;
             text-align: center;
             margin-top: auto;
         }
@@ -117,52 +147,102 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* New Styles */
+        .feature-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .hero-section {
+            background: url('path/to/your/hero-image.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 100px 20px;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
     <!-- Header section with sign in/sign up button and navigation links -->
     <header class="header">
-        <a href="index.html" style="font-size: 24px;">Intellectia.me</a>
+        <a href="index.html" style="font-size: 40px;">Intellectia.me</a>
         <nav class="nav-links">
-            <a href="#about">About</a>
-            <a href="#features">Features</a>
-            <a href="learn-more.html">Learn More</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#contact">Contact</a>
         </nav>
         <a href="login.html" class="cta-button">Sign In / Sign Up</a>
     </header>
 
     <!-- Main content section -->
     <main class="container">
-        <h1>Learn More About Intellectia.me</h1>
-        <p>Discover more about our platform, its features, and how it can benefit you.</p>
-
-        <!-- Our Story section -->
-        <section id="our-story" class="section">
-            <h2>Our Story</h2>
-            <p>Intellectia.me was founded with the vision to create a comprehensive platform for educational collaboration. Our goal is to bridge gaps between students, teachers, and parents, fostering a supportive educational community.</p>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Discover the Future of Learning</h1>
+            <p>Explore how Intellectia.me can transform education with innovative features and seamless communication.</p>
+            <a href="index.html" class="cta-button">Back to Home</a>
         </section>
 
-        <!-- Features section -->
-        <section id="features" class="section">
+        <!-- Learn More content -->
+        <section class="learn-more-content">
+            <h2>Our Mission</h2>
+            <p>At Intellectia.me, our mission is to create a cohesive educational community that enhances the learning experience for everyone involved. We strive to provide a platform that supports open communication, collaboration, and easy access to educational resources.</p>
+
             <h2>Key Features</h2>
-            <ul>
-                <li>Interactive Dashboards: Easy access to important information and updates.</li>
-                <li>Seamless Communication: Built-in messaging system for direct interaction.</li>
-                <li>Event Scheduling: Manage and view important dates and meetings.</li>
-                <li>Resource Management: Upload and share educational materials effortlessly.</li>
-                <!-- Add more features as needed -->
-            </ul>
-        </section>
+            <div class="feature-card">
+                <h3>User Profiles</h3>
+                <p>Create personalized profiles with profile pictures and contact details.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Messaging</h3>
+                <p>Direct communication between users for seamless interaction.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Resource Sharing</h3>
+                <p>Upload and share educational resources like documents and study materials.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Event Management</h3>
+                <p>Keep track of important dates and events with our integrated calendar.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Gradebook</h3>
+                <p>Access and track grades easily in one place.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Parent Portal</h3>
+                <p>Enable parents to stay informed about their children's academic progress and activities.</p>
+            </div>
 
-        <!-- FAQs section -->
-        <section id="faqs" class="section">
-            <h2>Frequently Asked Questions</h2>
-            <p><strong>Q: How can I create an account?</strong></p>
-            <p>A: Click on the "Sign In / Sign Up" button in the header and follow the instructions to create a new account.</p>
-            <p><strong>Q: How do I contact support?</strong></p>
-            <p>A: You can contact support via the "Contact" section of our website or by emailing support@intellectia.me.</p>
-            <!-- Add more FAQs as needed -->
+            <h2>Why Choose Intellectia.me?</h2>
+            <p>Intellectia.me offers a comprehensive and user-friendly platform that bridges the gap between students, educators, and parents. Our features are designed to make the educational process more efficient and effective, ensuring that everyone is on the same page.</p>
+            <p>By choosing Intellectia.me, you are investing in a platform that prioritizes communication, collaboration, and the overall success of the educational community.</p>
         </section>
     </main>
 
