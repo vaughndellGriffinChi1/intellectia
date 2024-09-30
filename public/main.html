@@ -47,10 +47,12 @@
 
     .button-container {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .button {
-      margin-left: 15px;
+      margin-left: 10px;
       padding: 10px 20px;
       background: linear-gradient(135deg, #A58AE8, #2C2999);
       color: #fff;
@@ -66,18 +68,31 @@
     }
 
     /* Layout styles */
-    .container {
+    .content-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      margin-top: 90px;
+      justify-content: space-between;
+      margin-top: 120px;
       padding: 20px;
+    }
+
+    /* Left-side container (for main boxes) */
+    .left-container {
+      display: flex;
+      flex-direction: column;
       gap: 20px;
+      width: 60%; /* Takes up 60% of the page width */
+    }
+
+    /* Right-side container (for Quick Contacts) */
+    .right-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 35%; /* Takes up 35% of the page width */
     }
 
     /* Box styles */
     .box {
-      flex: 1;
-      min-width: 300px;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
       padding: 20px;
@@ -95,137 +110,173 @@
       margin-bottom: 10px;
     }
 
+    /* Quick Links Section */
+    .quick-links {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+    }
+
+    .quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 10px;
+      width: 100px;
+      transition: background 0.3s ease;
+    }
+
+    .quick-link:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .quick-link i {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      color: #2C2999;
+    }
+
+    .quick-link span {
+      color: #2C2999;
+      font-size: 0.85rem;
+    }
+
     /* Custom styling for the bullet points */
     .bullet-points li {
       list-style-type: disc;
       margin-bottom: 10px;
     }
 
-    .bullet-points-profile {
-      display: flex;
-      flex-direction: column;
+    /* Additional sections */
+    .reminder-box {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      width: 100%;
     }
 
-    .bullet-points-profile li {
-      display: flex;
-      align-items: center;
+    .reminder-box ul {
+      padding-left: 15px;
+    }
+
+    .reminder-box ul li {
       margin-bottom: 10px;
     }
 
-    .bullet-points-profile img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-right: 10px;
+    .announcement-box {
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      width: 100%;
     }
 
-    /* Table styles */
-    .wide-box {
-      flex: 1;
+    /* Announcement Ticker */
+    .announcement-ticker {
+      overflow: hidden;
+      height: 30px;
+      white-space: nowrap;
+    }
+
+    .announcement-content {
+      display: inline-block;
+      animation: scroll 10s linear infinite;
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Table styling for events */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4A3A94;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: rgba(165, 138, 232, 0.2);
+    }
+
+    /* Quick Contacts Box */
+    .quick-contacts-box {
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      min-height: 300px;
-      transition: transform 0.3s ease;
     }
 
-    .wide-box:hover {
-      transform: translateY(-10px);
+    .contact {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
-    .wide-box table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+    .contact img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
     }
 
-    .wide-box th,
-    .wide-box td {
-      border: 1px solid #ddd;
-      padding: 12px;
-      text-align: center;
+    .contact-info {
+      display: flex;
+      flex-direction: column;
     }
 
-    .wide-box th {
-      background-color: #f2f2f2;
-      font-weight: 600;
+    .contact-name {
+      font-weight: bold;
+      color: #2C2999;
+    }
+
+    .contact-email {
+      font-size: 0.85rem;
+      color: #333;
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .container {
+      .content-wrapper {
         flex-direction: column;
-        padding: 10px;
       }
 
-      .button-container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .button {
-        margin-left: 0;
-        margin-top: 10px;
+      .left-container,
+      .right-container {
         width: 100%;
       }
-    }
 
-    /* Account Page */
-    .account-page {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      .quick-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-    .account-page-content {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 400px;
-    }
-
-    .account-page h2 {
-      margin-bottom: 20px;
-      color: #2C2999;
-    }
-
-    .account-page label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .account-page input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .account-page button {
-      padding: 10px 15px;
-      background: linear-gradient(135deg, #A58AE8, #2C2999);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-
-    .account-page button:hover {
-      background: #4A3A94;
+      .quick-link {
+        width: 80px;
+        padding: 5px;
+      }
     }
   </style>
 </head>
@@ -247,65 +298,137 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="box left">
-      <h2>School News</h2>
-      <ul class="bullet-points">
-        <li>Exciting news! The school's annual carnival is happening this Friday.</li>
-        <li>The robotics team secured the first position in the national competition.</li>
-        <li>The school's choir won the regional music contest.</li>
-        <li>Reminder: Parent-teacher meetings will be held next week.</li>
-        <li>The school will be closed on Monday for a public holiday.</li>
-      </ul>
-    </div>
-    <div class="box right">
-      <h2>Quick Menu</h2>
-      <ul class="bullet-points-profile">
-        <li>
-          <img src="./user.png" alt="Profile Image">
-          John Doe
-        </li>
-        <li>
-          <img src="./user.png" alt="Profile Image">
-          Jane Smith
-        </li>
-        <li>
-          <img src="./user.png" alt="Profile Image">
-          Student's Name
-        </li>
-      </ul>
+  <div class="content-wrapper">
+    <!-- Left Container: Quick Links, Announcements, Reminders, Events -->
+    <div class="left-container">
+      <!-- Quick Links Section -->
+      <div class="quick-links">
+        <div class="quick-link" onclick="window.location.href='assignments.html';">
+          <i class="fas fa-book"></i>
+          <span>Assignments</span>
+        </div>
+        <div class="quick-link" onclick="window.location.href='meetings.html';">
+          <i class="fas fa-handshake"></i>
+          <span>Meetings</span>
+        </div>
+        <div class="quick-link" onclick="window.location.href='calendar.html';">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Calendar</span>
+        </div>
+        <div class="quick-link" onclick="window.location.href='contacts.html';">
+          <i class="fas fa-user"></i>
+          <span>Contacts</span>
+        </div>
+        <div class="quick-link" onclick="window.location.href='grades.html';">
+          <i class="fas fa-chart-line"></i>
+          <span>Grades</span>
+        </div>
+      </div>
+
+      <!-- Announcement Ticker -->
+      <div class="box announcement-box">
+        <h2>Latest Announcements</h2>
+        <div class="announcement-ticker">
+          <div class="announcement-content">Don't forget to submit your science project by the end of the week!</div>
+        </div>
+      </div>
+
+      <!-- Reminders Section -->
+      <div class="box reminder-box">
+        <h2>Reminders</h2>
+        <ul class="bullet-points">
+          <li>Submit Math Homework by Friday.</li>
+          <li>Book a meeting with your counselor for next week.</li>
+          <li>Prepare for upcoming Science Fair.</li>
+        </ul>
+      </div>
+
+      <!-- Events Section -->
+      <div class="box">
+        <h2>Upcoming Events</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Annual School Carnival</td>
+              <td>Oct 2, 2024</td>
+              <td>Main Auditorium</td>
+              <td>A day full of games, food, and entertainment for everyone!</td>
+            </tr>
+            <tr>
+              <td>Parent-Teacher Conference</td>
+              <td>Oct 10, 2024</td>
+              <td>School Hall</td>
+              <td>Come meet with the teachers to discuss progress.</td>
+            </tr>
+            <tr>
+              <td>Art Exhibition</td>
+              <td>Oct 15, 2024</td>
+              <td>Art Wing</td>
+              <td>Showcasing student artwork from the year.</td>
+            </tr>
+            <tr>
+              <td>Science Fair</td>
+              <td>Oct 22, 2024</td>
+              <td>Gymnasium</td>
+              <td>Present your innovative projects!</td>
+            </tr>
+            <tr>
+              <td>Winter Concert</td>
+              <td>Dec 5, 2024</td>
+              <td>Auditorium</td>
+              <td>Join us for a night of music and performance.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="wide-box">
-      <h2>Upcoming Events</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Event</th>
-            <th>Date</th>
-            <th>Location</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Annual School Carnival</td>
-            <td>Oct 2, 2024</td>
-            <td>Main Auditorium</td>
-            <td>A day full of games, food, and entertainment for everyone!</td>
-          </tr>
-          <tr>
-            <td>Parent-Teacher Conference</td>
-            <td>Oct 10, 2024</td>
-            <td>School Hall</td>
-            <td>Come meet with the teachers to discuss progress.</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Right Container: Quick Contacts -->
+    <div class="right-container">
+      <div class="box quick-contacts-box">
+        <h2>Quick Contacts</h2>
+        <div class="contact">
+          <img src="https://via.placeholder.com/40" alt="Contact 1">
+          <div class="contact-info">
+            <span class="contact-name">John Doe</span>
+            <span class="contact-email">jdoe@example.com</span>
+          </div>
+        </div>
+        <div class="contact">
+          <img src="https://via.placeholder.com/40" alt="Contact 2">
+          <div class="contact-info">
+            <span class="contact-name">Jane Smith</span>
+            <span class="contact-email">jsmith@example.com</span>
+          </div>
+        </div>
+        <div class="contact">
+          <img src="https://via.placeholder.com/40" alt="Contact 3">
+          <div class="contact-info">
+            <span class="contact-name">Emily Davis</span>
+            <span class="contact-email">edavis@example.com</span>
+          </div>
+        </div>
+        <div class="contact">
+          <img src="https://via.placeholder.com/40" alt="Contact 4">
+          <div class="contact-info">
+            <span class="contact-name">Michael Brown</span>
+            <span class="contact-email">mbrown@example.com</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div id="account-page" class="account-page">
+  <!-- Account Page -->
+  <div id="account-page" class="account-page" style="display: none;">
     <div class="account-page-content">
       <h2>Account Settings</h2>
       <label for="username">Username:</label>
@@ -316,6 +439,7 @@
 
   <script>
     function openAccountPage() {
+      // Display the account page when the user clicks on the account profile
       document.getElementById("account-page").style.display = "flex";
     }
   </script>
