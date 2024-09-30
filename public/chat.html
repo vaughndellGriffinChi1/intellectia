@@ -7,14 +7,13 @@
   <title>Chat Page</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
-    /* Your CSS styles here */
-
     /* Global styles */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #a487d5, #4d6bd9);
+      background: linear-gradient(135deg, #A58AE8, #2C2999);
+      color: #333;
     }
 
     /* Header styles */
@@ -24,18 +23,12 @@
       left: 0;
       width: 100%;
       background-color: #fff;
-      /* White background for the header */
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      /* Add a box shadow to the header */
       padding: 10px 20px;
-      /* Adjusted padding for the buttons and account profile */
       z-index: 2;
-      /* Set a higher z-index to keep the header above the content */
       display: flex;
       justify-content: space-between;
-      /* Add space between the account profile and buttons */
       align-items: center;
-      /* Vertically center the elements */
     }
 
     .account-profile {
@@ -56,15 +49,21 @@
     }
 
     .button {
-      margin: 5px;
-      padding: 10px 15px;
-      background: linear-gradient(#8f9baa, #525b6e);
+      margin-left: 10px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #A58AE8, #2C2999);
       color: #fff;
       border: none;
       cursor: pointer;
       font-size: 16px;
       border-radius: 5px;
+      transition: background 0.3s ease;
     }
+
+    .button:hover {
+      background: #4A3A94;
+    }
+
     /* Chat container styles */
     .chat-container {
       display: flex;
@@ -109,19 +108,29 @@
 
     .message-container {
       overflow-y: auto;
+      flex: 1;
     }
 
     .message {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #e3e3e3;
-    }
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d3d3d3;
+  /* Remove max-width to allow messages to size based on content */
+  width: fit-content; /* Make the width based on content */
+  max-width: 70%; /* Optional: Limit the maximum width for long messages */
+}
+
 
     .sent {
       margin-left: auto;
-      background-color: #8f9baa;
+      background-color: #724dd8;
       color: #fff;
+    }
+
+    .received {
+      background-color: #e2e2e2;
+      color: #000;
     }
 
     /* Input container styles */
@@ -147,44 +156,38 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
   </style>
 </head>
 
 <body>
   <div class="header-container">
     <div class="account-profile">
-      <img src="./user.png" alt="Profile Image"> <!-- Replace with your profile image -->
-      <span>Test Account</span> <!-- Replace with your account name -->
+      <img src="/public/graduate-student-wearing-graduation-cap-icon-silhouette-simple-324910390.jpg" alt="Profile Image">
+      <span>Test Account</span>
     </div>
 
-<div class="button-container">
+    <div class="button-container">
       <button class="button" onclick="window.location.href = 'main.html';"><i class="fas fa-home"></i> Home</button>
-      <!-- Updated text in button 1 -->
       <button class="button" onclick="window.location.href = 'chat.html';"><i class="fas fa-comment"></i> Chats</button>
       <button class="button" onclick="window.location.href = 'grades.html';"><i class="fas fa-chart-line"></i> Grades</button>
-      <button class="button" onclick="window.location.href = 'Contact.html';"><i class="fas fa-user"></i> Contacts</button> <!-- Updated text in button 2 -->
-      <button class="button" onclick="window.location.href = 'calendar.html';"><i class="fas fa-calendar"></i> Calendar</button> <!-- Updated text in button 3 -->
-      <button class="button" onclick="window.location.href = 'settings.html';"><i class="fas fa-cog"></i> Settings</button> <!-- Updated text in button 4 -->
+      <button class="button" onclick="window.location.href = 'Contact.html';"><i class="fas fa-user"></i> Contacts</button>
+      <button class="button" onclick="window.location.href = 'calendar.html';"><i class="fas fa-calendar"></i> Calendar</button>
+      <button class="button" onclick="window.location.href = 'settings.html';"><i class="fas fa-cog"></i> Settings</button>
     </div>
   </div>
 
   <div class="chat-container">
-    <!-- Chat partner's profile at the top of the chat window -->
     <div class="chat-partner-profile">
-      <img src="./user.png" alt="Chat Partner"> <!-- Replace with the chat partner's profile image -->
-      <span class="chat-partner-name">Jane Smith</span> <!-- Replace with the chat partner's name -->
+      <img src="/public/graduate-student-wearing-graduation-cap-icon-silhouette-simple-324910390.jpg" alt="Chat Partner">
+      <span class="chat-partner-name">Jane Smith</span>
     </div>
 
-    <!-- Chat window -->
     <div class="chat-window">
       <div class="message-container">
-        <!-- Dummy chat messages, you can replace this with dynamic data from the server -->
         <div class="message">Hello!<br><span>10:00 AM</span></div>
         <div class="message">Hi there!<br><span>10:02 AM</span></div>
         <div class="message sent">How are you?<br><span>10:05 AM</span></div>
         <div class="message">I'm good, thanks!<br><span>10:07 AM</span></div>
-        <!-- Add previous discussions for all users here -->
       </div>
       <div class="input-container">
         <input type="text" id="message-input" placeholder="Type your message..." onkeydown="handleKeyDown(event)">
@@ -222,8 +225,15 @@
     // Function to send a new message
     function sendMessage() {
       const messageInput = document.getElementById('message-input').value;
+      const maxLength = 100; // Set your maximum message length here
+
       if (messageInput.trim() !== '') {
-        addMessage(messageInput, true);
+        // Truncate the message if it's longer than maxLength
+        const truncatedMessage = messageInput.length > maxLength 
+          ? messageInput.substring(0, maxLength) + "..." // Add ellipsis to indicate truncation
+          : messageInput;
+
+        addMessage(truncatedMessage, true);
         document.getElementById('message-input').value = '';
       }
     }
@@ -243,9 +253,6 @@
     setTimeout(() => {
       addMessage("Hi! How can I help you?");
     }, 2000);
-
-
-    
   </script>
 </body>
 
