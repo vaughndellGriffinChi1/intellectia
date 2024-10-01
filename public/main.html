@@ -10,12 +10,13 @@
   <style>
     /* Global styles */
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #A58AE8, #2C2999);
+      background: linear-gradient(135deg, #6a7ac5, #424b75);
       color: #333;
     }
+
 
     /* Header styles */
     .header-container {
@@ -24,14 +25,13 @@
       left: 0;
       width: 100%;
       background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 15px 20px;
-      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      padding: 10px 20px;
+      z-index: 2;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     .account-profile {
       display: flex;
       align-items: center;
@@ -52,19 +52,20 @@
     }
 
     .button {
-      margin-left: 10px;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #A58AE8, #2C2999);
+      margin: 5px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #6a7ac5, #424b75);
       color: #fff;
       border: none;
       cursor: pointer;
       font-size: 16px;
-      border-radius: 5px;
-      transition: background 0.3s ease;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .button:hover {
-      background: #4A3A94;
+      background-color: #354089;
+      transform: translateY(-2px);
     }
 
     /* Layout styles */
@@ -74,6 +75,7 @@
       margin-top: 120px;
       padding: 20px;
     }
+    
 
     /* Left-side container (for main boxes) */
     .left-container {
@@ -435,6 +437,22 @@
       document.getElementById("account-page").style.display = "flex";
     }
   </script>
+  <!-- JavaScript for Gradient Animation on Hover -->
+  <script>
+    const title = document.getElementById('title');
+
+    // Change gradient on hover
+    title.addEventListener('mousemove', (e) => {
+      const { offsetX, offsetWidth } = e;
+      const percent = offsetX / offsetWidth * 100;
+
+      title.style.background = `linear-gradient(${percent}deg, #4d6bd9, #a487d5)`;
+    });
+
+    title.addEventListener('mouseleave', () => {
+      title.style.background = 'linear-gradient(90deg, #4d6bd9, #a487d5)';
+    });
+
 </body>
 
 </html>

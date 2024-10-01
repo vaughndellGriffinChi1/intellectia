@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     /* Global styles */
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #A58AE8, #2C2999);
+      background: linear-gradient(135deg, #6a7ac5, #424b75);
       color: #333;
     }
-
     /* Header styles */
     .header-container {
       position: fixed;
@@ -49,36 +49,36 @@
     }
 
     .button {
-      margin-left: 10px;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #A58AE8, #2C2999);
+      margin: 5px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #6a7ac5, #424b75);
       color: #fff;
       border: none;
       cursor: pointer;
       font-size: 16px;
-      border-radius: 5px;
-      transition: background 0.3s ease;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
-
     .button:hover {
-      background: #4A3A94;
+      background-color: #354089;
+      transform: translateY(-2px);
     }
 
     /* Chat container styles */
     .chat-container {
       display: flex;
-      margin-top: 70px;
+      margin-top: 80px;
+      padding: 20px;
     }
 
     /* Chat partner's profile styles */
     .chat-partner-profile {
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 15px;
       background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
-      margin-left: 20px;
     }
 
     .chat-partner-profile img {
@@ -95,66 +95,82 @@
     /* Chat window styles */
     .chat-window {
       flex: 1;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 10px;
+      background-color: #f9f9f9;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       margin-left: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 400px;
+      height: 500px;
     }
 
     .message-container {
       overflow-y: auto;
       flex: 1;
+      margin-bottom: 15px;
     }
 
     .message {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #d3d3d3;
-  /* Remove max-width to allow messages to size based on content */
-  width: fit-content; /* Make the width based on content */
-  max-width: 70%; /* Optional: Limit the maximum width for long messages */
-}
-
+      margin: 10px 0;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background-color: #d3d3d3;
+      width: fit-content;
+      max-width: 75%;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
     .sent {
       margin-left: auto;
-      background-color: #724dd8;
+      background-color:#424b75;
       color: #fff;
+      text-align: right;
     }
 
     .received {
-      background-color: #e2e2e2;
-      color: #000;
+      background-color: #f0f0f0;
+    }
+
+    .message span {
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #555;
     }
 
     /* Input container styles */
     .input-container {
       display: flex;
       align-items: center;
-      margin-top: 10px;
     }
 
     .input-container input {
       flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+      font-size: 14px;
     }
 
     .input-container button {
-      margin-left: 10px;
-      padding: 8px 12px;
+      padding: 10px 16px;
       background-color: #8f9baa;
       color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 20px;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .input-container button:hover {
+      background-color: #59697b;
+      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -171,7 +187,6 @@
       <button class="button" onclick="window.location.href = 'chat.html';"><i class="fas fa-comment"></i> Chats</button>
       <button class="button" onclick="window.location.href = 'grades.html';"><i class="fas fa-chart-line"></i> Grades</button>
       <button class="button" onclick="window.location.href = 'Contact.html';"><i class="fas fa-user"></i> Contacts</button>
-      <button class="button" onclick="window.location.href = 'calendar.html';"><i class="fas fa-calendar"></i> Calendar</button>
       <button class="button" onclick="window.location.href = 'settings.html';"><i class="fas fa-cog"></i> Settings</button>
     </div>
   </div>
@@ -184,10 +199,10 @@
 
     <div class="chat-window">
       <div class="message-container">
-        <div class="message">Hello!<br><span>10:00 AM</span></div>
-        <div class="message">Hi there!<br><span>10:02 AM</span></div>
-        <div class="message sent">How are you?<br><span>10:05 AM</span></div>
-        <div class="message">I'm good, thanks!<br><span>10:07 AM</span></div>
+        <div class="message received">Hello!<span>10:00 AM</span></div>
+        <div class="message received">Hi there!<span>10:02 AM</span></div>
+        <div class="message sent">How are you?<span>10:05 AM</span></div>
+        <div class="message received">I'm good, thanks!<span>10:07 AM</span></div>
       </div>
       <div class="input-container">
         <input type="text" id="message-input" placeholder="Type your message..." onkeydown="handleKeyDown(event)">
@@ -205,6 +220,8 @@
 
       if (sent) {
         messageDiv.classList.add('sent');
+      } else {
+        messageDiv.classList.add('received');
       }
 
       const messageText = document.createElement('span');
@@ -212,7 +229,9 @@
 
       const timeSpan = document.createElement('span');
       const date = new Date();
-      timeSpan.innerText = `${date.getHours()}:${date.getMinutes()}`;
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      timeSpan.innerText = `${hours}:${minutes}`;
 
       messageDiv.appendChild(messageText);
       messageDiv.appendChild(document.createElement('br'));
@@ -225,12 +244,11 @@
     // Function to send a new message
     function sendMessage() {
       const messageInput = document.getElementById('message-input').value;
-      const maxLength = 100; // Set your maximum message length here
+      const maxLength = 150;
 
       if (messageInput.trim() !== '') {
-        // Truncate the message if it's longer than maxLength
         const truncatedMessage = messageInput.length > maxLength 
-          ? messageInput.substring(0, maxLength) + "..." // Add ellipsis to indicate truncation
+          ? messageInput.substring(0, maxLength) + "..." 
           : messageInput;
 
         addMessage(truncatedMessage, true);
@@ -244,10 +262,6 @@
         sendMessage();
       }
     }
-
-    // Bind the send button click event
-    const sendButton = document.getElementById('send-button');
-    sendButton.addEventListener('click', sendMessage);
 
     // Simulate received message after 2 seconds
     setTimeout(() => {
